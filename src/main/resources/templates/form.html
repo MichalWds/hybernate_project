@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3> Szukaj po imieniu badz wieku</h3>
+<form action="/people/search" method="post">
+  <input type="text" name="option">
+   <input type="submit" value="szukaj">
+    <!-- opcja szukania -->
+
+</form>
+
+
+
+<form th:action="@{/}" th:object="${person}" method="post">
+    <!--po kliknieciu action, przechodzi do htmp post -->
+<input type="hidden" th:field="*{id}">
+<!-- -->
+
+    <table>
+        <tr>
+            <td>Name:</td>
+
+            <!--pole th field sprawia, ze pole nazywa sie name, jesli pole bedzie juz wypelnione
+             to pole nie znika!  w htmlu, np wypelnimy person  to nie znika, wywoluje getter
+             a age nadal zostaje do wpisania
+             th:fieldname daje w htmlu daje nam name=name  i daje nam value od person -->
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="text" th:field="*{age}" /></td>
+            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+            <!-- th if daje nam informacje, o  -->
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

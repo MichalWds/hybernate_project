@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>People</h2>
+    <!-- to powinno byc w css \/  -->
+    <table class="table table-bordered">
+        <!--jesli message nie jest nullem zrob paragraf i wrzuc tam paragraf z tekstem, jesli jest nullem to nic tam nie wrzucaj -->
+        <p th:if="${message}"
+           th:text="${message}"
+           style="color: green"></p>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        </thead>
+        <tbody>
+<!--tr:each mowi nam, ze dla kazdego persona(Obiektu [ad.do klasy]), (odnosnik do people, bo tak dalismy w getmapping, mogloby byc
+kapsko i tam tez kapsko w getmapping(all)
+ td th: text mowi, ze wpisuje teks, ktory wpisalismy, analogicznie od klasy person. id, name, oraz age-->
+        <tr th:each="person : ${people}">
+            <td th:text="${person.id}">
+            <td th:text="${person.name}">
+            <td th:text="${person.age}">
+            <td>
+                <a data-th-href="@{|/people/${person.id}/delete|}">
+                    Usuń
+                </a>
+
+            </td>
+            <td>
+                <a data-th-href="@{|/people/${person.id}/update|}">
+                    Update
+                </a>
+
+            </td>
+        </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+</body>
+</html>
