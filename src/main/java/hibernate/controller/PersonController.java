@@ -22,7 +22,10 @@ public class PersonController {
     private PersonRepository personRepository;
 
 
-    @GetMapping("/")
+
+
+
+    @GetMapping("/add")
     public String show(ModelMap modelMap) {
         modelMap.put("person", new Person());
         // przekazujemy pusty string person form, by sie odniesc do klasy person
@@ -30,6 +33,21 @@ public class PersonController {
 
         return "form";
     }
+
+        @GetMapping("/")
+        public String getAll(ModelMap modelMap){
+            modelMap.put("people", personRepository.findAll());
+            return "all";
+        }
+
+
+
+/*
+Person pesron = new Person()
+person.setAge(age);
+pesron.setName(name);
+ */
+
 
     @PostMapping("/")
     public String create(@Valid Person person, BindingResult bindingResult) {
@@ -56,11 +74,9 @@ teraz bardziej spring/thyleaf way.
 finalnie, wszystko jest
 
  */
-
-
         } else {
             personRepository.save(person);          //to daje nam informacje, ze zapisuje do bazy danych
-            return "redirect:/all";
+            return "redirect:/";
         }
     }
 
@@ -87,14 +103,15 @@ finalnie, wszystko jest
     }
 
 
+
+
     @GetMapping("people/{id}/update")
     public String update(@PathVariable Integer id, ModelMap modelMap) {
         Person person = personRepository.findById(id).get();
         modelMap.put("person", person);
         return "form";
     }
-    @GetMapping
-    ("/eighteens")
+    @GetMapping("/eighteens")
     public String getEighteens(ModelMap modelMap){
         modelMap.put("people",personRepository.findByAgeEighteen(18));
         return "all";
