@@ -22,9 +22,6 @@ public class PersonController {
     private PersonRepository personRepository;
 
 
-
-
-
     @GetMapping("/add")
     public String show(ModelMap modelMap) {
         modelMap.put("person", new Person());
@@ -34,11 +31,11 @@ public class PersonController {
         return "form";
     }
 
-        @GetMapping("/")
-        public String getAll(ModelMap modelMap){
-            modelMap.put("people", personRepository.findAll());
-            return "all";
-        }
+    @GetMapping("/")
+    public String getAll(ModelMap modelMap) {
+        modelMap.put("people", personRepository.findAll());
+        return "all";
+    }
 
 
 
@@ -103,32 +100,31 @@ finalnie, wszystko jest
     }
 
 
-
-
     @GetMapping("people/{id}/update")
     public String update(@PathVariable Integer id, ModelMap modelMap) {
         Person person = personRepository.findById(id).get();
         modelMap.put("person", person);
         return "form";
     }
+
     @GetMapping("/eighteens")
-    public String getEighteens(ModelMap modelMap){
-        modelMap.put("people",personRepository.findByAgeEighteen(18));
+    public String getEighteens(ModelMap modelMap) {
+        modelMap.put("people", personRepository.findByAgeEighteen(18));
         return "all";
     }
-//postmaping zeby nir wyswietlalo kazdej akcji na strnir
-@PostMapping("/people/search")
-    public String search(@RequestParam String option,
-                         ModelMap modelMap){
-        try{
-            Integer age = Integer.parseInt(option);
-            modelMap.put("people",personRepository.FindByNameOrAge(option, age));
 
-        }
-            catch (NumberFormatException e){
+    //postmaping zeby nir wyswietlalo kazdej akcji na strnir
+    @PostMapping("/people/search")
+    public String search(@RequestParam String option,
+                         ModelMap modelMap) {
+        try {
+            Integer age = Integer.parseInt(option);
+            modelMap.put("people", personRepository.FindByNameOrAge(option, age));
+
+        } catch (NumberFormatException e) {
             modelMap.put("people", personRepository.FindByNameOrAge(option, 0));
-            }
-    return "all";
+        }
+        return "all";
     }
 
 

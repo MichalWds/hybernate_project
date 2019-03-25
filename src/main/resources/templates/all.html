@@ -30,9 +30,9 @@
         </tr>
         </thead>
         <tbody>
-<!--tr:each mowi nam, ze dla kazdego persona(Obiektu [ad.do klasy]), (odnosnik do people, bo tak dalismy w getmapping, mogloby byc
-kapsko i tam tez kapsko w getmapping(all)
- td th: text mowi, ze wpisuje teks, ktory wpisalismy, analogicznie od klasy person. id, name, oraz age-->
+        <!--tr:each mowi nam, ze dla kazdego persona(Obiektu [ad.do klasy]), (odnosnik do people, bo tak dalismy w getmapping, mogloby byc
+        kapsko i tam tez kapsko w getmapping(all)
+         td th: text mowi, ze wpisuje teks, ktory wpisalismy, analogicznie od klasy person. id, name, oraz age-->
         <tr th:each="person : ${people}">
             <td th:text="${person.id}">
             <td th:text="${person.name}">
