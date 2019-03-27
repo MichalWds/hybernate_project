@@ -15,7 +15,6 @@ public class User {
     //stworzyna specjalna tabela z ID w hybrernate, by sie implementowalo
     private Integer id;
 
-
     private String name;
 
     private String email;    //zmapowane 1 do 1 z kolumny bazy danych
